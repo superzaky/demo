@@ -1,10 +1,16 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.AuthenticationResponse;
+import com.example.demo.model.AuthenticationRequest;
 import com.example.demo.model.User;
 import com.example.demo.security.JwtUtil;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,7 +22,10 @@ public class UserController {
     
     @Autowired
     private AuthenticationManager authenticationManager;
-
+   
+   @Autowired
+    private UserDetailsService userDetailsService;
+   
     @Autowired
     private JwtUtil jwtUtil;
 
